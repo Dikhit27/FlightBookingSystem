@@ -2,16 +2,15 @@ package com.fbs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Bean;
+
 
 @SpringBootApplication
 @EnableEurekaClient
-public class SearchApplication {
+public class ServiceFlightApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SearchApplication.class, args);
+		SpringApplication.run(ServiceFlightApplication.class, args);
 	}
-	
+
 }

@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fbs.entity.Flight;
+import com.fbs.exception.FlightNotFoundException;
 import com.fbs.service.FlightServiceImpl;
 
 @RestController
-@RequestMapping("/flight")
+@RequestMapping("/search")
 public class FlightController {
 
 	@Autowired
@@ -29,9 +30,9 @@ public class FlightController {
 		return new ResponseEntity<>(newFlight,HttpStatus.CREATED);
 	}
 
-	@GetMapping("/getAll/search")
+	@GetMapping("/getAll")
 	public ResponseEntity<Object> searchFlight(@RequestParam String source,
-			@RequestParam  String destination, @RequestParam String date) {
+			@RequestParam  String destination, @RequestParam String date) throws FlightNotFoundException{
 		List<Flight> list = flightService.flightSearch(source, destination, date);
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}

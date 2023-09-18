@@ -17,7 +17,12 @@ public class FlightServiceImpl implements FlightService{
 	
 	@Override
 	public List<Flight> flightSearch(String source, String destination, String date) {
-		return flightRepo.findBySourceDestinationAndDate(source, destination, date).orElseThrow(()->new FlightNotFoundException("Not Found"));
+		List<Flight> list= flightRepo.findBySourceDestinationAndDate(source, destination, date).orElseThrow(()->new FlightNotFoundException("Not Found"));
+	    if(list.isEmpty()) {
+	    	throw new FlightNotFoundException("No flights are going from "+source+" to "+destination+" at "+date);
+	    }
+	    
+	    return list;
 	}
 
 	@Override

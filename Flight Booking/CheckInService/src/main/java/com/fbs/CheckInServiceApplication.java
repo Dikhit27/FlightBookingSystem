@@ -5,13 +5,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class SearchApplication {
+public class CheckInServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SearchApplication.class, args);
+		SpringApplication.run(CheckInServiceApplication.class, args);
 	}
 	
+	@Bean
+	@LoadBalanced
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+
 }
